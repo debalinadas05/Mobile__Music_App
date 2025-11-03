@@ -14,18 +14,29 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 const heroImage = require("../../assets/images/alone.png");
 
 const deadInsideAlbum = require("../../assets/images/Rectangle1.png"); 
 const heartlessAlbum = require("../../assets/images/Rectangle4.png");
 const rectangle2Album = require("../../assets/images/Rectangle3.png");
+<<<<<<< HEAD
 const weAreChaosSingle = require("../../assets/images/Rectangle3.png"); 
+=======
+const weAreChaosSingle = require("../../assets/images/Rectangle3.png");
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 const smileSingle = require("../../assets/images/Rectangle5.png"); 
 
 const discographyData = [
   { id: "1", title: "Dead inside", year: "2020", image: deadInsideAlbum },
+<<<<<<< HEAD
   { id: "2", title: "Alone", year: "2023", image: rectangle2Album }, 
+=======
+  { id: "2", title: "Alone", year: "2023", image: rectangle2Album },
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
   { id: "3", title: "Heartless", year: "2023", image: heartlessAlbum },
 ];
 
@@ -49,9 +60,13 @@ const popularSinglesData = [
 
 const renderDiscographyItem = ({ item }) => (
   <Link 
-      href="/(tabs)/playing" // The destination is the playing screen
+      href="/(tabs)/playing" 
       asChild 
    > 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
     <Pressable style={styles.discographyItem}> 
         <ImageBackground 
             source={item.image} 
@@ -84,7 +99,6 @@ export default function ExploreScreen() {
     <SafeAreaView style={styles.safeArea}>
            {" "}
       <ScrollView style={styles.container}>
-                        {/* --- 1. Hero Section --- */}       {" "}
         <ImageBackground source={heroImage} style={styles.heroBackground}>
                    {" "}
           <View style={styles.heroContent}>
@@ -99,12 +113,16 @@ export default function ExploreScreen() {
           </View>
                  {" "}
         </ImageBackground>
+<<<<<<< HEAD
+=======
+                     {" "}
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
         <View style={styles.paginationDotsContainer}>
                     <View style={[styles.paginationDot, styles.activeDot]} />
                     <View style={styles.paginationDot} />
                     <View style={styles.paginationDot} />       {" "}
         </View>
-                {/* --- 3. Discography Section Header --- */}       {" "}
+                 {" "}
         <View style={styles.sectionHeader}>
                     <Text style={styles.sectionTitle}>Discography</Text>       
            {" "}
@@ -113,7 +131,10 @@ export default function ExploreScreen() {
           </Pressable>
                  {" "}
         </View>
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
                {" "}
         <FlatList
           horizontal
@@ -136,7 +157,7 @@ export default function ExploreScreen() {
           scrollEnabled={false} 
           contentContainerStyle={styles.popularSinglesListContent}
         />
-                <View style={{ height: 90 }} /> {/* Spacer for bottom nav */}   
+                <View style={{ height: 90 }} /> 
                  {" "}
       </ScrollView>
       <View style={styles.bottomNav}>
@@ -152,7 +173,6 @@ export default function ExploreScreen() {
           <Ionicons name="home" size={24} color="white" />
           <Text style={styles.navTextActive}>Home</Text>
         </Pressable>
-        {/* Cart */}
         <Pressable style={styles.navItem}>
           <Ionicons name="cart" size={24} color="gray" />
           <Text style={styles.navText}>Cart</Text>
@@ -267,7 +287,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "left",
   },
-  // --- NEW STYLES: Popular Singles ---
   popularSinglesListContent: {
     paddingHorizontal: 20,
     paddingBottom: 20,
@@ -305,11 +324,19 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 13,
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
   bottomNav: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+<<<<<<< HEAD
     backgroundColor: "#1C1C1C", 
+=======
+    backgroundColor: "#1C1C1C",
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
     borderTopWidth: 1,
     borderTopColor: "#333",
     paddingVertical: 8,
@@ -333,7 +360,11 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   navTextHighlight: {
+<<<<<<< HEAD
     color: "#FF4500",
+=======
+    color: "#FF4500", 
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
     fontSize: 12,
     marginTop: 4,
   },

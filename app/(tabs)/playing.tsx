@@ -4,7 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons'; 
 
 
+<<<<<<< HEAD
 const albumArt = require('../../assets/images/playingalond.png'); 
+=======
+const albumArt = require('../../assets/images/playingalone.png'); 
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 
 export default function PlayingScreen() {
   const scaleAnim = useRef(new Animated.Value(1)).current; 
@@ -38,7 +42,11 @@ export default function PlayingScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+<<<<<<< HEAD
         <AnimatedImageBackground 
+=======
+        <ImageBackground 
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
           source={albumArt} 
           style={[
                 styles.albumArtBackground,
@@ -48,20 +56,30 @@ export default function PlayingScreen() {
             ]} 
           resizeMode="cover"
         >
+<<<<<<< HEAD
          
           <View style={styles.songInfoContainer}>
             <Text style={styles.songTitle}>Alone in the Abyss</Text>
             <Text style={styles.artistName}>Youlakou</Text>
             
+=======
+          <View style={styles.songInfoContainer}>
+            <Text style={styles.songTitle}>Alone in the Abyss</Text>
+            <Text style={styles.artistName}>Youlakou</Text>
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
             <Pressable style={styles.shareIcon}>
               <Feather name="upload" size={24} color="#E69A15" />
             </Pressable>
           </View>
         </AnimatedImageBackground>
 
+<<<<<<< HEAD
         
         <View style={styles.controlsContainer}>
          
+=======
+        <View style={styles.controlsContainer}>
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
           <View style={styles.progressBarContainer}>
             <View style={styles.progressBar}>
               <View style={styles.progressFill} />
@@ -73,7 +91,6 @@ export default function PlayingScreen() {
             </View>
           </View>
 
-          {/* Main Playback Buttons */}
           <View style={styles.mainControls}>
             <Pressable>
               <MaterialCommunityIcons name="replay" size={30} color="gray" />
@@ -93,8 +110,38 @@ export default function PlayingScreen() {
           </View>
         </View>
       </View>
+<<<<<<< HEAD
     </SafeAreaView>
   );
+=======
+<View style={styles.bottomNav}>
+        <Pressable style={styles.navItem}>
+          <Ionicons name="heart" size={24} color="gray" />
+          <Text style={styles.navText}>Favorite</Text>
+        </Pressable>
+        <Pressable style={styles.navItem}>
+          <Ionicons name="search" size={24} color="gray" />
+          <Text style={styles.navText}>Search</Text>
+        </Pressable>
+        <Pressable style={styles.navItem}>
+          <Ionicons name="home" size={24} color="white" />
+          <Text style={styles.navTextActive}>Home</Text>
+        </Pressable>
+        <Pressable style={styles.navItem}>
+          <Ionicons name="cart" size={24} color="gray" />
+          <Text style={styles.navText}>Cart</Text>
+        </Pressable>
+        <Pressable style={styles.navItem}>
+          <Ionicons name="person" size={24} color="#E69A15" />
+          <Text style={[styles.navText, { color: "#E69A15" }]}>
+            Profile
+          </Text>
+        </Pressable>
+      </View>
+         {" "}
+    </SafeAreaView>
+  );
+>>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 }
 
 const styles = StyleSheet.create({
