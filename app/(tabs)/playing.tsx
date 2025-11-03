@@ -1,35 +1,67 @@
-import { StyleSheet, Text, View, ImageBackground, Pressable } from 'react-native';
+import React, { useEffect, useRef } from 'react'; // <-- IMPORT useRef and useEffect
+import { StyleSheet, Text, View, ImageBackground, Pressable, Animated } from 'react-native'; // <-- IMPORT Animated
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons'; 
 
-// --- Image I ports ---
-// FIX APPLIED: Using '../../../' to correctly resolve the path from app/(tabs)/
-const albumArt = require('../../assets/images/playingalone.png'); 
+
+const albumArt = require('../../assets/images/playingalond.png'); 
 
 export default function PlayingScreen() {
+  const scaleAnim = useRef(new Animated.Value(1)).current; 
+
+  useEffect(() => {
+    const breatheAnimation = () => {
+      Animated.sequence([
+       
+        Animated.timing(scaleAnim, {
+          toValue: 1.02,
+          duration: 4000, 
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 1.0,
+          duration: 4000,
+          useNativeDriver: true,
+        }),
+      ]).start(breatheAnimation); 
+    };
+
+    breatheAnimation();
+    
+    return () => scaleAnim.stopAnimation(); 
+  }, [scaleAnim]);
+
+
+  const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
+
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Album Art Background */}
-        <ImageBackground 
+        <AnimatedImageBackground 
           source={albumArt} 
-          style={styles.albumArtBackground} 
+          style={[
+                styles.albumArtBackground,
+                { 
+                  transform: [{ scale: scaleAnim }]
+                }
+            ]} 
           resizeMode="cover"
         >
-          {/* Song Info */}
+         
           <View style={styles.songInfoContainer}>
             <Text style={styles.songTitle}>Alone in the Abyss</Text>
             <Text style={styles.artistName}>Youlakou</Text>
-            {/* Share Icon */}
+            
             <Pressable style={styles.shareIcon}>
               <Feather name="upload" size={24} color="#E69A15" />
             </Pressable>
           </View>
-        </ImageBackground>
+        </AnimatedImageBackground>
 
-        {/* Playback Controls Section */}
+        
         <View style={styles.controlsContainer}>
-          {/* Progress Bar & Time */}
+         
           <View style={styles.progressBarContainer}>
             <View style={styles.progressBar}>
               <View style={styles.progressFill} />
@@ -50,7 +82,7 @@ export default function PlayingScreen() {
               <Ionicons name="play-skip-back" size={40} color="white" />
             </Pressable>
             <Pressable style={styles.playButton}>
-              <Ionicons name="play" size={40} color="white" />
+              <Ionicons name="play" size={40} color="black" />
             </Pressable>
             <Pressable>
               <Ionicons name="play-skip-forward" size={40} color="white" />
@@ -61,41 +93,10 @@ export default function PlayingScreen() {
           </View>
         </View>
       </View>
-<View style={styles.bottomNav}>
-        {/* Favorite */}
-        <Pressable style={styles.navItem}>
-          <Ionicons name="heart" size={24} color="gray" />
-          <Text style={styles.navText}>Favorite</Text>
-        </Pressable>
-        {/* Search */}
-        <Pressable style={styles.navItem}>
-          <Ionicons name="search" size={24} color="gray" />
-          <Text style={styles.navText}>Search</Text>
-        </Pressable>
-        {/* Home (Active) */}
-        <Pressable style={styles.navItem}>
-          <Ionicons name="home" size={24} color="white" />
-          <Text style={styles.navTextActive}>Home</Text>
-        </Pressable>
-        {/* Cart */}
-        <Pressable style={styles.navItem}>
-          <Ionicons name="cart" size={24} color="gray" />
-          <Text style={styles.navText}>Cart</Text>
-        </Pressable>
-        {/* Profile (Highlight) */}
-        <Pressable style={styles.navItem}>
-          <Ionicons name="person" size={24} color="#E69A15" />
-          <Text style={[styles.navText, { color: "#E69A15" }]}>
-            Profile
-          </Text>
-        </Pressable>
-      </View>
-         {" "}
-    </SafeAreaView>
-  );
+    </SafeAreaView>
+  );
 }
 
-// ----------------------------------------------------------------
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -106,10 +107,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   albumArtBackground: {
-    flex: 0.8, 
+    flex: 0.7, 
     justifyContent: 'flex-end',
     alignItems: 'center', 
-    paddingBottom: 20,
+    paddingBottom: 5,
   },
   songInfoContainer: {
     alignItems: 'center',
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     top: 5, 
   },
   controlsContainer: {
-    flex: 0.2, 
+    flex: 0.25, 
     backgroundColor: 'black',
     paddingHorizontal: 20,
     paddingTop: 10,
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     marginBottom: 10, 
   },
   playButton: {
-    backgroundColor: '#E69A15',
+    backgroundColor: '#ffffff',
     borderRadius: 30, 
     width: 60,
     height: 60,
