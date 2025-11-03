@@ -48,7 +48,7 @@ const popularSinglesData = [
 
 const renderDiscographyItem = ({ item }) => (
   <Link 
-      href="/(tabs)/playing" // The destination is the playing screen
+      href="/(tabs)/playing" 
       asChild 
    > 
  
