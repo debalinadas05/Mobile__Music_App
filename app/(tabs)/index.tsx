@@ -1,98 +1,110 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { StyleSheet, Text, View, ImageBackground, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+// 1. FINAL CORRECTED IMAGE PATH
+// Path is: app/(tabs)/index.tsx -> ../ (out of tabs) -> ../ (out of app) -> assets/images/image.png
+const background = require('../../assets/images/image.png'); 
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+export default function LandingScreen() {
+  return (
+    <View style={styles.container}>
+      
+      <ImageBackground 
+        source={background} 
+        resizeMode="cover" 
+        style={styles.imageBackground}
+      >
+        <View style={styles.contentContainer}>
+          
+          <Text style={styles.titleText}>
+            Dancing between{'\n'}
+            The shadows{'\n'}
+            Of rhythm
+          </Text>
+
+          {/* Button: Get Started - Navigates to the Explore tab */}
+          <Link href="/(tabs)/explore" asChild> 
+            <Pressable style={styles.getStartedButton}>
+              <Text style={styles.getStartedButtonText}>Get started</Text>
+            </Pressable>
+          </Link>
+          
+          {/* Button: Continue with Email - Navigates to a separate login screen */}
+          <Link href="/playing" asChild> 
+            <Pressable style={styles.emailButton}>
+              <Text style={styles.emailButtonText}>Continue with Email</Text>
+            </Pressable>
+          </Link>
+
+          {/* Terms and Privacy Text */}
+          <Text style={styles.termsText}>
+            by continuing you agree to terms of services and <Text style={{fontWeight: 'bold'}}>Privacy policy</Text>
+          </Text>
+          
+        </View>
+      </ImageBackground>
+    </View>
   );
 }
 
+// ----------------------------------------------------------------
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1, 
+    backgroundColor: 'black',
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: 'flex-end', 
+  },
+  contentContainer: {
+    paddingHorizontal: 30, 
+    paddingBottom: 50, 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Subtle overlay for text readability
+    paddingTop: 30,
+  },
+  titleText: {
+    color: 'white',
+    fontSize: 40,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 80, 
+    alignSelf: 'flex-start', // Align title to the left
+    lineHeight: 45, 
+  },
+  // --- BUTTON 1: Get Started (Rounded) ---
+  getStartedButton: {
+    width: '100%',
+    backgroundColor: '#FF4500', 
+    paddingVertical: 15,
+    borderRadius: 25, // Rounded corners
+    marginBottom: 15,
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  getStartedButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  // --- BUTTON 2: Email (Rounded) ---
+  emailButton: {
+    width: '100%',
+    borderColor: 'gray', 
+    borderWidth: 1,
+    paddingVertical: 15,
+    borderRadius: 25, // Rounded corners
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  emailButtonText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  // --- Footer Text ---
+  termsText: {
+    color: 'gray',
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
