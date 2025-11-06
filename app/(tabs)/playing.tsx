@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons'; 
 
 
-const albumArt = require('../../assets/images/playingalond.png'); 
+const albumArt = require('../../assets/images/playingalone.png'); 
 
 export default function PlayingScreen() {
   const scaleAnim = useRef(new Animated.Value(1)).current; 
