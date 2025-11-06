@@ -1,14 +1,10 @@
-import React, { useEffect, useRef } from 'react'; // <-- IMPORT useRef and useEffect
-import { StyleSheet, Text, View, ImageBackground, Pressable, Animated } from 'react-native'; // <-- IMPORT Animated
+import React, { useEffect, useRef } from 'react'; 
+import { StyleSheet, Text, View, ImageBackground, Pressable, Animated } from 'react-native'; 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons'; 
 
 
-<<<<<<< HEAD
 const albumArt = require('../../assets/images/playingalond.png'); 
-=======
-const albumArt = require('../../assets/images/playingalone.png'); 
->>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 
 export default function PlayingScreen() {
   const scaleAnim = useRef(new Animated.Value(1)).current; 
@@ -16,7 +12,6 @@ export default function PlayingScreen() {
   useEffect(() => {
     const breatheAnimation = () => {
       Animated.sequence([
-       
         Animated.timing(scaleAnim, {
           toValue: 1.02,
           duration: 4000, 
@@ -39,98 +34,89 @@ export default function PlayingScreen() {
   const AnimatedImageBackground = Animated.createAnimatedComponent(ImageBackground);
 
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-<<<<<<< HEAD
-        <AnimatedImageBackground 
-=======
-        <ImageBackground 
->>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
-          source={albumArt} 
-          style={[
-                styles.albumArtBackground,
-                { 
-                  transform: [{ scale: scaleAnim }]
-                }
-            ]} 
-          resizeMode="cover"
-        >
-<<<<<<< HEAD
-         
-          <View style={styles.songInfoContainer}>
-            <Text style={styles.songTitle}>Alone in the Abyss</Text>
-            <Text style={styles.artistName}>Youlakou</Text>
-            
-=======
-          <View style={styles.songInfoContainer}>
-            <Text style={styles.songTitle}>Alone in the Abyss</Text>
-            <Text style={styles.artistName}>Youlakou</Text>
->>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
-            <Pressable style={styles.shareIcon}>
-              <Feather name="upload" size={24} color="#E69A15" />
-            </Pressable>
-          </View>
-        </AnimatedImageBackground>
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
 
-<<<<<<< HEAD
-        
-        <View style={styles.controlsContainer}>
-         
-=======
-        <View style={styles.controlsContainer}>
->>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
-          <View style={styles.progressBarContainer}>
-            <View style={styles.progressBar}>
-              <View style={styles.progressFill} />
-              <View style={styles.progressHandle} />
-            </View>
-            <View style={styles.timeContainer}>
-              <Text style={styles.currentTime}>Dynamic Warmup |</Text>
-              <Text style={styles.totalTime}>4 min</Text>
-            </View>
-          </View>
+        {/* FIX 1: Removed duplicate ImageBackground tag */}
+        <AnimatedImageBackground 
+          source={albumArt} 
+          style={[
+            styles.albumArtBackground,
+            { 
+              transform: [{ scale: scaleAnim }]
+            }
+          ]} 
+          resizeMode="cover"
+        >
+          {/* FIX 2: Removed duplicate songInfoContainer */}
+          <View style={styles.songInfoContainer}>
+            <Text style={styles.songTitle}>Alone in the Abyss</Text>
+            <Text style={styles.artistName}>Youlakou</Text>
+            <Pressable style={styles.shareIcon}>
+              <Feather name="upload" size={24} color="#E69A15" />
+            </Pressable>
+          </View>
+        </AnimatedImageBackground>
 
-          <View style={styles.mainControls}>
-            <Pressable>
-              <MaterialCommunityIcons name="replay" size={30} color="gray" />
-            </Pressable>
-            <Pressable>
-              <Ionicons name="play-skip-back" size={40} color="white" />
-            </Pressable>
-            <Pressable style={styles.playButton}>
-              <Ionicons name="play" size={40} color="black" />
-            </Pressable>
-            <Pressable>
-              <Ionicons name="play-skip-forward" size={40} color="white" />
-            </Pressable>
-            <Pressable>
-              <Ionicons name="volume-high" size={30} color="gray" />
-            </Pressable>
-          </View>
-        </View>
-      </View>
-<<<<<<< HEAD
-    </SafeAreaView>
-  );
-=======
-<View style={styles.bottomNav}>
+        {/* Playback Controls Section */}
+        <View style={styles.controlsContainer}>
+          {/* Progress Bar & Time */}
+          <View style={styles.progressBarContainer}>
+            <View style={styles.progressBar}>
+              <View style={styles.progressFill} />
+              <View style={styles.progressHandle} />
+            </View>
+            <View style={styles.timeContainer}>
+              <Text style={styles.currentTime}>Dynamic Warmup |</Text>
+              <Text style={styles.totalTime}>4 min</Text>
+            </View>
+          </View>
+
+          {/* Main Playback Buttons */}
+          <View style={styles.mainControls}>
+            <Pressable>
+              <MaterialCommunityIcons name="replay" size={30} color="gray" />
+            </Pressable>
+            <Pressable>
+              <Ionicons name="play-skip-back" size={40} color="white" />
+            </Pressable>
+            <Pressable style={styles.playButton}>
+              <Ionicons name="play" size={40} color="black" />
+            </Pressable>
+            <Pressable>
+              <Ionicons name="play-skip-forward" size={40} color="white" />
+            </Pressable>
+            <Pressable>
+              <Ionicons name="volume-high" size={30} color="gray" />
+            </Pressable>
+          </View>
+        </View>
+      </View>
+
+      {/* FIX 3: Bottom Navigation is now correctly placed INSIDE SafeAreaView */}
+      <View style={styles.bottomNav}>
+        {/* Favorite */}
         <Pressable style={styles.navItem}>
           <Ionicons name="heart" size={24} color="gray" />
           <Text style={styles.navText}>Favorite</Text>
         </Pressable>
+        {/* Search */}
         <Pressable style={styles.navItem}>
           <Ionicons name="search" size={24} color="gray" />
           <Text style={styles.navText}>Search</Text>
         </Pressable>
+        {/* Home (Active) */}
         <Pressable style={styles.navItem}>
           <Ionicons name="home" size={24} color="white" />
           <Text style={styles.navTextActive}>Home</Text>
         </Pressable>
+        {/* Cart */}
         <Pressable style={styles.navItem}>
           <Ionicons name="cart" size={24} color="gray" />
           <Text style={styles.navText}>Cart</Text>
         </Pressable>
+        {/* Profile (Highlight) */}
         <Pressable style={styles.navItem}>
           <Ionicons name="person" size={24} color="#E69A15" />
           <Text style={[styles.navText, { color: "#E69A15" }]}>
@@ -138,12 +124,11 @@ export default function PlayingScreen() {
           </Text>
         </Pressable>
       </View>
-         {" "}
     </SafeAreaView>
   );
->>>>>>> 7b05d31b09ea4bcebcb9e3f1ddcbaca6728c06c2
 }
 
+// ... styles unchanged ...
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
