@@ -27,8 +27,7 @@ export default function LandingScreen() {
           </Link>
           
           {/* Button: Continue with Email - Navigates to a separate login screen */}
-          <Link href="/email_login" asChild/> 
-          <Link href="/playing" asChild> 
+          <Link href="/email_login" asChild> 
             <Pressable style={styles.emailButton}>
               <Text style={styles.emailButtonText}>Continue with Email</Text>
             </Pressable>
